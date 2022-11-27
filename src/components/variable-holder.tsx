@@ -1,4 +1,5 @@
 import { iVariable } from './interface';
+import './variable-holder.scss';
 
 interface VariableHolderProps {
   id: string;
@@ -10,6 +11,7 @@ export const VariableHolder = ({ id, variable }: VariableHolderProps): JSX.Eleme
     <div
       id={id}
       className='variable-holder'
+      draggable
     >
       {variable.label}
     </div>

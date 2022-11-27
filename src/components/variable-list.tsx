@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { DndTableContext } from './dnd-table-context';
-import { iVariable } from './interface';
+import { VariableHolder } from './variable-holder';
+import './variable-list.scss';
 
 interface VariableListHolderProps {
   id: string;
@@ -15,19 +16,10 @@ export const VariableListHolder = ({ id }: VariableListHolderProps) => {
       id={id}
     >
       {dndTableContext.variableList.map((variable, index) => (
-        <div
+        <VariableHolder
           id={`${id}-${variable.name}`}
-          className='variable-holder'
-          // onDragStart={(e) => dragStart(e, index)}
-          // onDragOver={(e) => dragEnter(e, index)}
-          // onDragEnd={drop}
-          key={index}
-          draggable
-          // style={{ backgroundColor: dragOverItem.current === index ? 'blue' : 'lightblue' }}
-          // style={{ top: index * 65 }}
-        >
-          {variable.label}
-        </div>
+          variable={variable}
+        />
       ))}
     </div>
   );

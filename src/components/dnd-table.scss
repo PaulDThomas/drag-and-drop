@@ -1,0 +1,16 @@
+.dndtable-main {
+  display: flex;
+  flex-direction: row;
+}
+
+.dndtable-lhs {
+  background-color: antiquewhite;
+  max-width: 200px;
+  padding: 2rem;
+}
+
+.dndtable-rhs {
+  background-color: rgb(224, 215, 198);
+  flex-grow: 1;
+  padding: 2rem;
+}

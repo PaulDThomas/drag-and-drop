@@ -1,0 +1,11 @@
+.drop-target {
+  min-height: 50px;
+  min-width: 50px;
+  background-color: red;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 0.25rem;
+}

@@ -29,3 +29,8 @@ export interface iDndTableSchema {
   statistics: eStatistic[];
   statisticPosition: 'row' | 'column';
 }
+
+export interface iPostion {
+  location: 'row' | 'column';
+  index: number[];
+}

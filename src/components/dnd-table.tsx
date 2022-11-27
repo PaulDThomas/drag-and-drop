@@ -1,9 +1,10 @@
-import { useRef } from 'react';
-import { iDndTableSchema, iVariable } from './interface';
-import './dnd-table.css';
-import { VariableListHolder } from './variable-list';
 import { ContextMenuProvider } from '@asup/tree-of-nodes';
+import { useRef } from 'react';
+import './dnd-table.scss';
 import { DndTableContext } from './dnd-table-context';
+import { DropTable } from './drop-table';
+import { iDndTableSchema, iVariable } from './interface';
+import { VariableListHolder } from './variable-list';
 
 interface DndTableProps {
   id: string;
@@ -60,7 +61,12 @@ export const DndTable = ({
           id={id}
           className='dndtable-main'
         >
-          <VariableListHolder id={`${id}-variable-list-holder`} />
+          <div className='dndtable-lhs'>
+            <VariableListHolder id={`${id}-variable-list-holder`} />
+          </div>
+          <div className='dndtable-rhs'>
+            <DropTable id={`${id}-drop-table`} />
+          </div>
         </div>
       </ContextMenuProvider>
     </DndTableContext.Provider>
