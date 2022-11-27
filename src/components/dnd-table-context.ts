@@ -1,8 +1,9 @@
 import { createContext } from 'react';
 import { iDndTableSchema, iVariable } from './interface';
 
-interface DndTableContextProps extends iDndTableSchema {
+export interface DndTableContextProps extends iDndTableSchema {
   variableList: iVariable[];
+  setDndTableSchema?: (ret: iDndTableSchema) => void;
 }
 
 export const DndTableContext = createContext<DndTableContextProps>({

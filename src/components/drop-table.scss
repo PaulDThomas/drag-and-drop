@@ -5,3 +5,11 @@
   align-items: center;
   background-color: bisque;
 }
+
+.drop-table-holder div.cell-holder {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(214, 168, 89);
+}

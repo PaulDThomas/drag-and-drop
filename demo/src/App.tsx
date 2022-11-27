@@ -28,7 +28,10 @@ export default () => {
             id='main-table'
             variableList={varList.current}
             dndTableSchema={dndTableSchema}
-            setDndTableSchema={setDndTableSchema}
+            setDndTableSchema={(ret) => {
+              console.log(ret);
+              setDndTableSchema(ret);
+            }}
           />
         </div>
       </div>

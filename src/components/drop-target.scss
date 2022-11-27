@@ -1,6 +1,7 @@
 .drop-target {
-  min-height: 50px;
-  min-width: 50px;
+  min-height: 2rem;
+  min-width: 2rem;
+  margin: 4px;
   background-color: red;
   display: flex;
   flex-direction: row;
@@ -8,4 +9,9 @@
   justify-content: center;
   border-radius: 10px;
   padding: 0.25rem;
+}
+
+.drop-target.can-drop {
+  margin: 3px;
+  border: 1px dashed black;
 }

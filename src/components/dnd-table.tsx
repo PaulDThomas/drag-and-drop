@@ -54,6 +54,7 @@ export const DndTable = ({
       value={{
         variableList,
         ...dndTableSchema,
+        setDndTableSchema,
       }}
     >
       <ContextMenuProvider>

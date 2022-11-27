@@ -3,12 +3,12 @@ export interface iValue {
   valueType: 'always' | 'sometimes' | 'never';
 }
 
-export interface iVariable {
+export type iVariable = {
   name: string;
   label: string;
   type: 'number' | 'character' | 'date' | 'time' | 'datetime';
   restrictValues?: iValue[];
-}
+};
 
 export enum eStatistic {
   n = 'n',
@@ -30,7 +30,7 @@ export interface iDndTableSchema {
   statisticPosition: 'row' | 'column';
 }
 
-export interface iPostion {
+export interface iPosition {
   location: 'row' | 'column';
   index: number[];
 }
