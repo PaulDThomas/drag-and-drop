@@ -2,12 +2,15 @@ import { iPosition } from './interface';
 import './drop-target.scss';
 import { DragEvent, useContext, useState } from 'react';
 import { DndTableContext, DndTableContextProps } from './dnd-table-context';
+import { CircleFill } from './circle-fill';
 
 interface DropTargetProps {
   id: string;
   position: iPosition;
   dropAction?: (position: iPosition, drop: unknown, context: DndTableContextProps) => void;
   children?: null | string | JSX.Element | (string | JSX.Element)[];
+  height?: string;
+  width?: string;
 }
 
 export const DropTarget = ({
@@ -15,6 +18,8 @@ export const DropTarget = ({
   position,
   dropAction,
   children,
+  height,
+  width,
 }: DropTargetProps): JSX.Element => {
   const [isOver, setIsOver] = useState<boolean>(false);
   const dndTableContext = useContext(DndTableContext);
@@ -49,16 +54,12 @@ export const DropTarget = ({
       }}
       onDrop={handleDrop}
       onDragLeave={() => setIsOver(false)}
+      style={{
+        height: height,
+        width: width,
+      }}
     >
-      {!children ? (
-        <span>
-          drop
-          <br />
-          here
-        </span>
-      ) : (
-        children
-      )}
+      {!children ? <CircleFill /> : children}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { DndTableContext } from './dnd-table-context';
+import './drop-table-body-row.scss';
 
 interface DropTableBodyRow {
   rowIndex: number;
@@ -13,7 +14,7 @@ export const DropTableBodyRow = ({ rowIndex: index }: DropTableBodyRow): JSX.Ele
       {dndTableContext.columns.map((variable, ci) => (
         <td key={ci}>
           <div
-            className='cell-holder'
+            className='data-cell'
             style={{ textAlign: 'center' }}
           >
             {dndTableContext.rows[index].label}

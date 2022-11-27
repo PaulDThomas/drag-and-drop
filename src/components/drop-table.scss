@@ -6,10 +6,12 @@
   background-color: bisque;
 }
 
-.drop-table-holder div.cell-holder {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(214, 168, 89);
+.drop-table-holder table {
+  border: 1px black solid;
+  border-collapse: collapse;
+}
+
+.drop-table-holder th,
+.drop-table-holder td {
+  border: 1px black solid;
 }

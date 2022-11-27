@@ -1,0 +1,63 @@
+import { useCallback, useContext, useMemo } from 'react';
+import { handleColumnVariableDrop } from '../functions/handleColumnVariableDrop';
+import { DndTableContext, DndTableContextProps } from './dnd-table-context';
+import { DropTarget } from './drop-target';
+import { iVariable } from './interface';
+import { VariableHolder } from './variable-holder';
+import { deleteColumnVariable } from '../functions/deleteColumnVariable';
+import { MenuContext, iMenuItem } from './context-menu-provider';
+import './drop-table-column-variable.scss';
+
+interface DropTableHeaderVariableProps {
+  id: string;
+  index: number;
+}
+
+export const DropTableColumnVariable = ({
+  id,
+  index,
+}: DropTableHeaderVariableProps): JSX.Element => {
+  const dndTableContext = useContext(DndTableContext);
+  const menuContext = useContext(MenuContext);
+  const variable = useMemo<iVariable>(() => dndTableContext.columns[index], [index]);
+
+  const showMenu = useCallback((e: React.MouseEvent<HTMLTableCellElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('CM' + e.pageX + e.pageY);
+    const menuItems: iMenuItem[] = [
+      { label: 'Remove', action: () => deleteColumnVariable(index, dndTableContext) },
+    ];
+    menuContext &&
+      menuContext.set({
+        visible: true,
+        y: e.pageY,
+        x: e.pageX,
+        menuItems: menuItems,
+      });
+  }, []);
+
+  return (
+    <th
+      key={variable.name}
+      onContextMenu={showMenu}
+    >
+      <div
+        id={id}
+        className='cell-holder'
+      >
+        <VariableHolder
+          id={`${id}-column-header-${index}`}
+          variable={variable}
+        />
+        <DropTarget
+          id={`${id}-column-header-drop-${index + 1}`}
+          position={{ location: 'column', index: [index + 1] }}
+          dropAction={handleColumnVariableDrop}
+          height='32px'
+          width='16px'
+        />
+      </div>
+    </th>
+  );
+};
