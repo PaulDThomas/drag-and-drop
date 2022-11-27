@@ -15,12 +15,20 @@ export const VariableListHolder = ({ id }: VariableListHolderProps) => {
       className='variable-list-holder'
       id={id}
     >
-      {dndTableContext.variableList.map((variable, index) => (
-        <VariableHolder
-          id={`${id}-${variable.name}`}
-          variable={variable}
-        />
-      ))}
+      {dndTableContext.variableList
+        .filter(
+          (v) =>
+            !dndTableContext.columns.map((c) => c.name).includes(v.name) &&
+            !dndTableContext.rows.map((r) => r.name).includes(v.name) &&
+            dndTableContext.target?.name !== v.name,
+        )
+        .map((variable, index) => (
+          <VariableHolder
+            key={variable.uid ?? index}
+            id={`${id}-${variable.name}`}
+            variable={variable}
+          />
+        ))}
     </div>
   );
 };

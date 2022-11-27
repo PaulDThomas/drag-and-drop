@@ -7,7 +7,12 @@ export const handleColumnVariableDrop = (
   dnd: DndTableContextProps,
 ) => {
   // Check if data is a variable
-  if (!data || !(data as iVariable).name || !(data as iVariable).label) return;
+  if (
+    !data ||
+    !(data as iVariable).uid ||
+    dnd.columns.map((v) => v.uid).includes((data as iVariable).uid)
+  )
+    return;
   else {
     console.log('Handle column variable drop');
     const newCols: iVariable[] = dnd.columns;
@@ -15,7 +20,7 @@ export const handleColumnVariableDrop = (
     dnd.setDndTableSchema &&
       dnd.setDndTableSchema({
         columns: newCols,
-        rows: dnd.rows,
+        rows: dnd.rows.filter((v) => v.uid !== (data as iVariable).uid),
         target: dnd.target,
         statisticPosition: dnd.statisticPosition,
         statistics: dnd.statistics,

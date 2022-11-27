@@ -8,6 +8,7 @@ import { DropTarget } from './drop-target';
 import { iVariable } from './interface';
 import { VariableHolder } from './variable-holder';
 import './drop-table-row-variable.scss';
+import { relative } from 'path';
 
 interface DropTableHeaderVariableProps {
   id: string;
@@ -37,22 +38,23 @@ export const DropTableRowVariable = ({ id, index }: DropTableHeaderVariableProps
 
   return (
     <tr key={variable.name}>
-      <td onContextMenu={showMenu}>
+      <td
+        onContextMenu={showMenu}
+        style={{ position: 'relative' }}
+      >
         <div className='cell-holder'>
           <VariableHolder
             id={`${id}-column-header-${index}`}
             variable={variable}
           />
           <DropTarget
+            type='horizontal'
             id={`${id}-column-header-drop-${index + 1}`}
             position={{ location: 'column', index: [index + 1] }}
             dropAction={handleRowVariableDrop}
-            height='calc(100% - 1rem)'
-            width='16px'
           />
         </div>
       </td>
-      <td />
       <DropTableBodyRow rowIndex={index} />
     </tr>
   );

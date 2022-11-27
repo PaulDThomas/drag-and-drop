@@ -1,11 +1,9 @@
 import { useContext } from 'react';
-import { handleColumnVariableDrop } from '../functions/handleColumnVariableDrop';
-import { handleRowVariableDrop } from '../functions/handleRowVariableDrop';
 import { DndTableContext } from './dnd-table-context';
 import { DropTableColumnVariable } from './drop-table-column-variable';
 import { DropTableRowVariable } from './drop-table-row-variable';
+import { DropTableTLCell } from './drop-table-tl-cell';
 import './drop-table.scss';
-import { DropTarget } from './drop-target';
 
 interface DropTableProps {
   id: string;
@@ -22,43 +20,22 @@ export const DropTable = ({ id }: DropTableProps): JSX.Element => {
       >
         <thead>
           <tr>
-            <th />
-            <th className='drop-table-header-cell'>
-              <DropTarget
-                id={`${id}-column-header-drop-i`}
-                position={{ location: 'column', index: [0] }}
-                dropAction={handleColumnVariableDrop}
-                height='32px'
-                width='16px'
-              />
-            </th>
-            {dndTableContext.columns.map((variable, index) => (
+            <DropTableTLCell id={`${id}-tl-cell`} />
+            {dndTableContext.columns.map((v, i) => (
               <DropTableColumnVariable
-                key={variable.name}
-                id={`${id}-header-variable-${index}`}
-                index={index}
+                key={v.uid ?? i}
+                id={`${id}-header-variable-${i}`}
+                index={i}
               />
             ))}
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <DropTarget
-                id={`${id}-header-cell-initial`}
-                position={{ location: 'row', index: [0, 0] }}
-                dropAction={handleRowVariableDrop}
-                width='calc(100% - 1rem)'
-                height='16px'
-              />
-            </td>
-            <td />
-          </tr>
-          {dndTableContext.rows.map((variable, index) => (
+          {dndTableContext.rows.map((v, i) => (
             <DropTableRowVariable
-              key={variable.name}
-              id={`${id}-row-variable-${index}`}
-              index={index}
+              key={v.uid ?? i}
+              id={`${id}-row-variable-${i}`}
+              index={i}
             />
           ))}
         </tbody>

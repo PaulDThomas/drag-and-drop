@@ -8,6 +8,7 @@ export type iVariable = {
   label: string;
   type: 'number' | 'character' | 'date' | 'time' | 'datetime';
   restrictValues?: iValue[];
+  uid?: string;
 };
 
 export enum eStatistic {

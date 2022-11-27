@@ -1,3 +1,5 @@
+import { nanoid } from 'nanoid';
+import { useMemo } from 'react';
 import { ContextMenuProvider } from './context-menu-provider';
 import { DndTableContext } from './dnd-table-context';
 import './dnd-table.scss';
@@ -18,11 +20,23 @@ export const DndTable = ({
   setDndTableSchema,
   variableList,
 }: DndTableProps): JSX.Element => {
+  const processedVariableList = useMemo<iVariable[]>(() => {
+    const names = [...new Set(variableList.map((v) => v.name))];
+    return [
+      ...names.map((n) => {
+        return {
+          ...variableList[variableList.findIndex((v) => v.name === n)],
+          uid: variableList[variableList.findIndex((v) => v.name === n)].uid ?? nanoid(),
+        };
+      }),
+    ];
+  }, [variableList]);
+
   return (
     <ContextMenuProvider>
       <DndTableContext.Provider
         value={{
-          variableList,
+          variableList: processedVariableList,
           ...dndTableSchema,
           setDndTableSchema,
         }}

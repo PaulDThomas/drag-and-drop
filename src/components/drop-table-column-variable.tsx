@@ -41,6 +41,7 @@ export const DropTableColumnVariable = ({
     <th
       key={variable.name}
       onContextMenu={showMenu}
+      style={{ position: 'relative' }}
     >
       <div
         id={id}
@@ -50,14 +51,13 @@ export const DropTableColumnVariable = ({
           id={`${id}-column-header-${index}`}
           variable={variable}
         />
-        <DropTarget
-          id={`${id}-column-header-drop-${index + 1}`}
-          position={{ location: 'column', index: [index + 1] }}
-          dropAction={handleColumnVariableDrop}
-          height='32px'
-          width='16px'
-        />
       </div>
+      <DropTarget
+        id={`${id}-column-header-drop-${index + 1}`}
+        type='vertical'
+        position={{ location: 'column', index: [index + 1] }}
+        dropAction={handleColumnVariableDrop}
+      />
     </th>
   );
 };

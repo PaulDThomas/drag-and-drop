@@ -1,16 +1,15 @@
-import { iPosition } from './interface';
-import './drop-target.scss';
 import { DragEvent, useContext, useState } from 'react';
 import { DndTableContext, DndTableContextProps } from './dnd-table-context';
-import { CircleFill } from './circle-fill';
+import './drop-target.scss';
+import { iPosition } from './interface';
 
 interface DropTargetProps {
   id: string;
   position: iPosition;
   dropAction?: (position: iPosition, drop: unknown, context: DndTableContextProps) => void;
   children?: null | string | JSX.Element | (string | JSX.Element)[];
-  height?: string;
-  width?: string;
+  style?: React.CSSProperties;
+  type?: 'horizontal' | 'vertical';
 }
 
 export const DropTarget = ({
@@ -18,8 +17,8 @@ export const DropTarget = ({
   position,
   dropAction,
   children,
-  height,
-  width,
+  style,
+  type,
 }: DropTargetProps): JSX.Element => {
   const [isOver, setIsOver] = useState<boolean>(false);
   const dndTableContext = useContext(DndTableContext);
@@ -44,7 +43,7 @@ export const DropTarget = ({
   return (
     <div
       id={id}
-      className={`drop-target ${isOver ? 'can-drop' : ''}`}
+      className={`drop-target ${isOver ? 'can-drop' : ''} ${type}`}
       onDragOver={(e) => {
         if (e.dataTransfer.types[0] === 'application/json') {
           setIsOver(true);
@@ -55,11 +54,10 @@ export const DropTarget = ({
       onDrop={handleDrop}
       onDragLeave={() => setIsOver(false)}
       style={{
-        height: height,
-        width: width,
+        ...style,
       }}
     >
-      {!children ? <CircleFill /> : children}
+      {!children ? <>&#8203;</> : children}
     </div>
   );
 };

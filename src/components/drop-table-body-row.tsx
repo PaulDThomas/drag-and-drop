@@ -12,7 +12,7 @@ export const DropTableBodyRow = ({ rowIndex: index }: DropTableBodyRow): JSX.Ele
   return (
     <>
       {dndTableContext.columns.map((variable, ci) => (
-        <td key={ci}>
+        <td key={variable.uid ?? ci}>
           <div
             className='data-cell'
             style={{ textAlign: 'center' }}
