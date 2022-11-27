@@ -1,8 +1,11 @@
 import { useRef } from 'react';
 import { iDndTableSchema, iVariable } from './interface';
 import './dnd-table.css';
+import { VariableListHolder } from './variable-list';
+import { ContextMenuProvider } from '@asup/tree-of-nodes';
+import { DndTableContext } from './dnd-table-context';
 
-interface iDndTable {
+interface DndTableProps {
   id: string;
   dndTableSchema: iDndTableSchema;
   setDndTableSchema: (ret: iDndTableSchema) => void;
@@ -14,7 +17,7 @@ export const DndTable = ({
   dndTableSchema,
   setDndTableSchema,
   variableList,
-}: iDndTable): JSX.Element => {
+}: DndTableProps): JSX.Element => {
   const dragItem = useRef<number | null>(null);
   const dragOverItem = useRef<number | null>(null);
 
@@ -46,27 +49,20 @@ export const DndTable = ({
   };
 
   return (
-    <div
-      id={id}
-      className='dndtable-main'
+    <DndTableContext.Provider
+      value={{
+        variableList,
+        ...dndTableSchema,
+      }}
     >
-      <div className='variable-list-holder'>
-        {variableList.map((item, index) => (
-          <div
-            className=''
-            // className='resizable'
-            onDragStart={(e) => dragStart(e, index)}
-            // onDragOver={(e) => dragEnter(e, index)}
-            // onDragEnd={drop}
-            key={index}
-            draggable
-            // style={{ backgroundColor: dragOverItem.current === index ? 'blue' : 'lightblue' }}
-            // style={{ top: index * 65 }}
-          >
-            {item.label}
-          </div>
-        ))}
-      </div>
-    </div>
+      <ContextMenuProvider>
+        <div
+          id={id}
+          className='dndtable-main'
+        >
+          <VariableListHolder id={`${id}-variable-list-holder`} />
+        </div>
+      </ContextMenuProvider>
+    </DndTableContext.Provider>
   );
 };
