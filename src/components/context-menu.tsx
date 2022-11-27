@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { contextMenuProps, MenuContext } from './context-menu-provider';
-import './context-menu.css';
+import './context-menu.scss';
 
 export const ContextMenu = React.forwardRef<HTMLDivElement, contextMenuProps>(
   ({ entries, visible, xPos, yPos }, ref): JSX.Element => {
