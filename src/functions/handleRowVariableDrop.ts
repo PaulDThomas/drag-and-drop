@@ -1,5 +1,6 @@
 import { DndTableContextProps } from '../components/dnd-table-context';
 import { iPosition, iVariable } from '../components/interface';
+import { moveVariable } from './moveVariable';
 
 export const handleRowVariableDrop = (
   position: iPosition,
@@ -7,16 +8,9 @@ export const handleRowVariableDrop = (
   dnd: DndTableContextProps,
 ) => {
   // Check if data is a variable
-  if (
-    !data ||
-    !(data as iVariable).uid ||
-    dnd.rows.map((v) => v.uid).includes((data as iVariable).uid)
-  )
-    return;
+  if (!data || !(data as iVariable).uid) return;
   else {
-    console.log('Handle row variable drop');
-    const newRows: iVariable[] = dnd.rows;
-    newRows.splice(position.index[0], 0, data as iVariable);
+    const newRows = moveVariable(dnd.rows, data as iVariable, position.index[0]);
     dnd.setDndTableSchema &&
       dnd.setDndTableSchema({
         columns: dnd.columns.filter((v) => v.uid !== (data as iVariable).uid),
