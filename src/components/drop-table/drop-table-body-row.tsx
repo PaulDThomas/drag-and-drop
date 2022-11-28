@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { DndTableContext } from './dnd-table-context';
+import { DndTableContext } from '../context/dnd-table-context';
 import './drop-table-body-row.scss';
 
 interface DropTableBodyRow {

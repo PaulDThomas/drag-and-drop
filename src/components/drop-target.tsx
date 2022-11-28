@@ -1,5 +1,5 @@
 import { DragEvent, useContext, useState } from 'react';
-import { DndTableContext, DndTableContextProps } from './dnd-table-context';
+import { DndTableContext, DndTableContextProps } from './context/dnd-table-context';
 import './drop-target.scss';
 import { iPosition } from './interface';
 

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { DndTableContext } from './dnd-table-context';
+import { DndTableContext } from '../context/dnd-table-context';
 import { DropTableColumnVariable } from './drop-table-column-variable';
 import { DropTableRowVariable } from './drop-table-row-variable';
 import { DropTableTLCell } from './drop-table-tl-cell';

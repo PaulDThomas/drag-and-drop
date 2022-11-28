@@ -1,7 +1,7 @@
-import { handleColumnVariableDrop } from '../functions/handleColumnVariableDrop';
-import { handleRowVariableDrop } from '../functions/handleRowVariableDrop';
+import { handleColumnVariableDrop } from '../../functions/handleColumnVariableDrop';
+import { handleRowVariableDrop } from '../../functions/handleRowVariableDrop';
 import './drop-table-tl-cell.scss';
-import { DropTarget } from './drop-target';
+import { DropTarget } from '../drop-target';
 
 interface DropTableTLCellProps {
   id: string;

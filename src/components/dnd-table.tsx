@@ -1,11 +1,11 @@
 import { nanoid } from 'nanoid';
 import { useMemo } from 'react';
-import { ContextMenuProvider } from './context-menu-provider';
-import { DndTableContext } from './dnd-table-context';
+import { ContextMenuProvider } from './context/context-menu-provider';
+import { DndTableContext } from './context/dnd-table-context';
 import './dnd-table.scss';
-import { DropTable } from './drop-table';
+import { DropTable } from './drop-table/drop-table';
 import { iDndTableSchema, iVariable } from './interface';
-import { VariableListHolder } from './variable-list';
+import { VariableListHolder } from './lhs/variable-list';
 
 interface DndTableProps {
   id: string;

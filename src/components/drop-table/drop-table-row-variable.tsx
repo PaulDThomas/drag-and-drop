@@ -1,12 +1,12 @@
-import { deleteRowVariable } from '../functions/deleteRowVariable';
-import { handleRowVariableDrop } from '../functions/handleRowVariableDrop';
+import { deleteRowVariable } from '../../functions/deleteRowVariable';
+import { handleRowVariableDrop } from '../../functions/handleRowVariableDrop';
 import { useCallback, useContext, useMemo } from 'react';
-import { iMenuItem, MenuContext } from './context-menu-provider';
-import { DndTableContext } from './dnd-table-context';
+import { iMenuItem, MenuContext } from '../context/context-menu-provider';
+import { DndTableContext } from '../context/dnd-table-context';
 import { DropTableBodyRow } from './drop-table-body-row';
-import { DropTarget } from './drop-target';
-import { iVariable } from './interface';
-import { VariableHolder } from './variable-holder';
+import { DropTarget } from '../drop-target';
+import { iVariable } from '../interface';
+import { VariableHolder } from '../lhs/variable-holder';
 import './drop-table-row-variable.scss';
 import { relative } from 'path';
 

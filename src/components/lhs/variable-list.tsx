@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { DndTableContext } from './dnd-table-context';
+import { DndTableContext } from '../context/dnd-table-context';
 import { VariableHolder } from './variable-holder';
 import './variable-list.scss';
 

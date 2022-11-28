@@ -1,4 +1,4 @@
-import { DndTableContextProps } from '../components/dnd-table-context';
+import { DndTableContextProps } from '../components/context/dnd-table-context';
 import { iVariable } from '../components/interface';
 
 export const deleteColumnVariable = (index: number, dnd: DndTableContextProps) => {

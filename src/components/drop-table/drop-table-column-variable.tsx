@@ -1,11 +1,11 @@
 import { useCallback, useContext, useMemo } from 'react';
-import { handleColumnVariableDrop } from '../functions/handleColumnVariableDrop';
-import { DndTableContext, DndTableContextProps } from './dnd-table-context';
-import { DropTarget } from './drop-target';
-import { iVariable } from './interface';
-import { VariableHolder } from './variable-holder';
-import { deleteColumnVariable } from '../functions/deleteColumnVariable';
-import { MenuContext, iMenuItem } from './context-menu-provider';
+import { deleteColumnVariable } from '../../functions/deleteColumnVariable';
+import { handleColumnVariableDrop } from '../../functions/handleColumnVariableDrop';
+import { iMenuItem, MenuContext } from '../context/context-menu-provider';
+import { DndTableContext } from '../context/dnd-table-context';
+import { DropTarget } from '../drop-target';
+import { iVariable } from '../interface';
+import { VariableHolder } from '../lhs/variable-holder';
 import './drop-table-column-variable.scss';
 
 interface DropTableHeaderVariableProps {
