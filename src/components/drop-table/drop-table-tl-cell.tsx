@@ -12,9 +12,8 @@ interface DropTableTLCellProps {
 export const DropTableTLCell = ({ id }: DropTableTLCellProps): JSX.Element => {
   const dndTableContext = useContext(DndTableContext);
   return (
-    <th>
+    <th style={{ position: 'relative' }}>
       <DropEdges
-        className='tl-cell-holder'
         id={`${id}-drop-edges`}
         onDropBottom={(ret) =>
           handleRowVariableDrop({ location: 'row', index: [0] }, ret, dndTableContext)
@@ -22,7 +21,9 @@ export const DropTableTLCell = ({ id }: DropTableTLCellProps): JSX.Element => {
         onDropRight={(ret) =>
           handleColumnVariableDrop({ location: 'column', index: [0] }, ret, dndTableContext)
         }
-      />
+      >
+        <div className='tl-cell-holder' />
+      </DropEdges>
     </th>
   );
 };

@@ -19,21 +19,24 @@ export const DropTableRowVariable = ({ id, index }: DropTableHeaderVariableProps
   const menuContext = useContext(MenuContext);
   const variable = useMemo<iVariable>(() => dndTableContext.rows[index], [index]);
 
-  const showMenu = useCallback((e: React.MouseEvent<HTMLTableCellElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log('CM' + e.pageX + e.pageY);
-    const menuItems: iMenuItem[] = [
-      { label: 'Remove', action: () => deleteRowVariable(index, dndTableContext) },
-    ];
-    menuContext &&
-      menuContext.set({
-        visible: true,
-        y: e.pageY,
-        x: e.pageX,
-        menuItems: menuItems,
-      });
-  }, []);
+  const showMenu = useCallback(
+    (e: React.MouseEvent<HTMLTableCellElement>) => {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log('CM' + e.pageX + e.pageY);
+      const menuItems: iMenuItem[] = [
+        { label: 'Remove', action: () => deleteRowVariable(index, dndTableContext) },
+      ];
+      menuContext &&
+        menuContext.set({
+          visible: true,
+          y: e.pageY,
+          x: e.pageX,
+          menuItems: menuItems,
+        });
+    },
+    [dndTableContext],
+  );
 
   return (
     <tr key={variable.name}>

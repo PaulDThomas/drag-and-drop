@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { iDndData } from '../interface';
 import './drop-edges.scss';
 import { DropTarget } from './drop-target';
@@ -24,11 +25,7 @@ export const DropEdges = ({
   className,
 }: DropEdgesProps): JSX.Element => {
   return (
-    <div
-      id={id}
-      className={`${className} drop-edges`}
-      style={{ ...style }}
-    >
+    <Fragment>
       {onDropTop && (
         <DropTarget
           id={`${id}-drop-top`}
@@ -58,6 +55,6 @@ export const DropEdges = ({
         />
       )}
       {children}
-    </div>
+    </Fragment>
   );
 };

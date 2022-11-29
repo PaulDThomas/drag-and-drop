@@ -6,7 +6,7 @@ export const deleteColumnVariable = (index: number, dnd: DndTableContextProps) =
   if (index >= dnd.columns.length || !dnd.setDndTableSchema) return;
   else {
     console.log('Delete column variable');
-    const newCols: iVariable[] = dnd.columns;
+    const newCols: iVariable[] = [...dnd.columns];
     newCols.splice(index, 1);
     dnd.setDndTableSchema({
       columns: newCols,

@@ -21,21 +21,24 @@ export const DropTableColumnVariable = ({
   const menuContext = useContext(MenuContext);
   const variable = useMemo<iVariable>(() => dndTableContext.columns[index], [index]);
 
-  const showMenu = useCallback((e: React.MouseEvent<HTMLTableCellElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log('CM' + e.pageX + e.pageY);
-    const menuItems: iMenuItem[] = [
-      { label: 'Remove', action: () => deleteColumnVariable(index, dndTableContext) },
-    ];
-    menuContext &&
-      menuContext.set({
-        visible: true,
-        y: e.pageY,
-        x: e.pageX,
-        menuItems: menuItems,
-      });
-  }, []);
+  const showMenu = useCallback(
+    (e: React.MouseEvent<HTMLTableCellElement>) => {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log('CM' + e.pageX + e.pageY);
+      const menuItems: iMenuItem[] = [
+        { label: 'Remove', action: () => deleteColumnVariable(index, dndTableContext) },
+      ];
+      menuContext &&
+        menuContext.set({
+          visible: true,
+          y: e.pageY,
+          x: e.pageX,
+          menuItems: menuItems,
+        });
+    },
+    [dndTableContext],
+  );
 
   return (
     <th

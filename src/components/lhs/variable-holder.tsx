@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { iVariable } from '../interface';
+import { iDndData, iVariable } from '../interface';
 import './variable-holder.scss';
 
 interface VariableHolderProps {
@@ -13,7 +13,10 @@ export const VariableHolder = ({ id, variable }: VariableHolderProps): JSX.Eleme
   const handleDragStart = (e: React.DragEvent) => {
     console.log('Drag start for ' + variable.name);
     setIsBeingDragged(true);
-    e.dataTransfer.setData('application/json', JSON.stringify(variable));
+    e.dataTransfer.setData(
+      'application/json',
+      JSON.stringify({ type: 'variable', data: variable }),
+    );
   };
 
   const handleDragEnd = (e: React.DragEvent) => {
