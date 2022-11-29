@@ -1,20 +1,18 @@
 import { DragEvent, useContext, useState } from 'react';
-import { DndTableContext, DndTableContextProps } from './context/dnd-table-context';
+import { DndTableContext } from '../context/dnd-table-context';
+import { iDndData } from '../interface';
 import './drop-target.scss';
-import { iPosition } from './interface';
 
 interface DropTargetProps {
   id: string;
-  position: iPosition;
-  dropAction?: (position: iPosition, drop: unknown, context: DndTableContextProps) => void;
+  dropAction?: (ret: iDndData) => void;
   children?: null | string | JSX.Element | (string | JSX.Element)[];
   style?: React.CSSProperties;
-  type?: 'horizontal' | 'vertical';
+  type?: 'top' | 'left' | 'bottom' | 'right';
 }
 
 export const DropTarget = ({
   id,
-  position,
   dropAction,
   children,
   style,
@@ -33,7 +31,7 @@ export const DropTarget = ({
         const data = JSON.parse(e.dataTransfer.getData('application/json'));
         console.log('Data dropped');
         console.log(data);
-        dropAction && dropAction(position, data, dndTableContext);
+        dropAction && dropAction(data);
       } catch {
         console.warn('Something has gone wrong :(');
       }
