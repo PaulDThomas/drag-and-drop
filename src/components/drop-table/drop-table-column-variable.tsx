@@ -3,7 +3,7 @@ import { deleteColumnVariable } from '../../functions/deleteColumnVariable';
 import { handleColumnVariableDrop } from '../../functions/handleColumnVariableDrop';
 import { iMenuItem, MenuContext } from '../context/context-menu-provider';
 import { DndTableContext } from '../context/dnd-table-context';
-import { DropTarget } from '../drop-target';
+import { DropEdges } from '../drop-targets/drop-edges';
 import { iVariable } from '../interface';
 import { VariableHolder } from '../lhs/variable-holder';
 import './drop-table-column-variable.scss';
@@ -43,21 +43,18 @@ export const DropTableColumnVariable = ({
       onContextMenu={showMenu}
       style={{ position: 'relative' }}
     >
-      <div
+      <DropEdges
         id={id}
         className='cell-holder'
+        onDropRight={(ret) =>
+          handleColumnVariableDrop({ location: 'column', index: [index + 1] }, ret, dndTableContext)
+        }
       >
         <VariableHolder
           id={`${id}-column-header-${index}`}
           variable={variable}
         />
-      </div>
-      <DropTarget
-        id={`${id}-column-header-drop-${index + 1}`}
-        type='vertical'
-        position={{ location: 'column', index: [index + 1] }}
-        dropAction={handleColumnVariableDrop}
-      />
+      </DropEdges>
     </th>
   );
 };

@@ -1,14 +1,13 @@
+import { useCallback, useContext, useMemo } from 'react';
 import { deleteRowVariable } from '../../functions/deleteRowVariable';
 import { handleRowVariableDrop } from '../../functions/handleRowVariableDrop';
-import { useCallback, useContext, useMemo } from 'react';
 import { iMenuItem, MenuContext } from '../context/context-menu-provider';
 import { DndTableContext } from '../context/dnd-table-context';
-import { DropTableBodyRow } from './drop-table-body-row';
-import { DropTarget } from '../drop-target';
+import { DropEdges } from '../drop-targets/drop-edges';
 import { iVariable } from '../interface';
 import { VariableHolder } from '../lhs/variable-holder';
+import { DropTableBodyRow } from './drop-table-body-row';
 import './drop-table-row-variable.scss';
-import { relative } from 'path';
 
 interface DropTableHeaderVariableProps {
   id: string;
@@ -42,18 +41,18 @@ export const DropTableRowVariable = ({ id, index }: DropTableHeaderVariableProps
         onContextMenu={showMenu}
         style={{ position: 'relative' }}
       >
-        <div className='cell-holder'>
+        <DropEdges
+          className='cell-holder'
+          id={`${id}`}
+          onDropBottom={(ret) =>
+            handleRowVariableDrop({ location: 'row', index: [index + 1] }, ret, dndTableContext)
+          }
+        >
           <VariableHolder
             id={`${id}-column-header-${index}`}
             variable={variable}
           />
-          <DropTarget
-            type='horizontal'
-            id={`${id}-column-header-drop-${index + 1}`}
-            position={{ location: 'column', index: [index + 1] }}
-            dropAction={handleRowVariableDrop}
-          />
-        </div>
+        </DropEdges>
       </td>
       <DropTableBodyRow rowIndex={index} />
     </tr>
