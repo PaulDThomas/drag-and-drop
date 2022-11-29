@@ -35,3 +35,8 @@ export interface iPosition {
   location: 'row' | 'column';
   index: number[];
 }
+
+export interface iDndData {
+  type: 'variable' | 'statistic';
+  data: iVariable | eStatistic;
+}

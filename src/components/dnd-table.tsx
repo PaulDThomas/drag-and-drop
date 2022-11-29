@@ -5,6 +5,7 @@ import { DndTableContext } from './context/dnd-table-context';
 import './dnd-table.scss';
 import { DropTable } from './drop-table/drop-table';
 import { iDndTableSchema, iVariable } from './interface';
+import { StatisticListHolder } from './lhs/statistic-list';
 import { VariableListHolder } from './lhs/variable-list';
 
 interface DndTableProps {
@@ -46,7 +47,8 @@ export const DndTable = ({
           className='dndtable-main'
         >
           <div className='dndtable-lhs'>
-            <VariableListHolder id={`${id}-variable-list-holder`} />
+            <VariableListHolder id={`${id}-variable-list`} />
+            <StatisticListHolder id={`${id}-statistic-list`} />
           </div>
           <div className='dndtable-rhs'>
             <DropTable id={`${id}-drop-table`} />

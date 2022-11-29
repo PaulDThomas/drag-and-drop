@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { iVariable } from './interface';
+import { iVariable } from '../interface';
 import './variable-holder.scss';
 
 interface VariableHolderProps {
