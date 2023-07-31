@@ -9,7 +9,7 @@ interface DropEdgesProps {
   onDropLeft?: (ret: iDndData) => void;
   onDropBottom?: (ret: iDndData) => void;
   onDropRight?: (ret: iDndData) => void;
-  children?: null | JSX.Element | (string | JSX.Element)[];
+  children?: JSX.Element;
   style?: React.CSSProperties;
   className?: string;
 }

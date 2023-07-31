@@ -13,7 +13,10 @@ export const StatisticHolder = ({ id, statistic }: StatisticHolderProps): JSX.El
   const handleDragStart = (e: React.DragEvent) => {
     console.log('Drag start for ' + statistic);
     setIsBeingDragged(true);
-    e.dataTransfer.setData('application/json', JSON.stringify({ type: 'statistic', statistic }));
+    e.dataTransfer.setData(
+      'application/json',
+      JSON.stringify({ type: 'statistic', data: statistic }),
+    );
   };
 
   const handleDragEnd = (e: React.DragEvent) => {
